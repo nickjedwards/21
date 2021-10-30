@@ -2,8 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+.card {
+  /* width: 8rem; */
+  /* height: 200px; */
+  transition: .2s;
+}
+
+.card:hover {
+  transform: translateY(-1rem);
+}
+
+.card:hover~.card {
+  transform: translateX(2.5rem);
+}
+
+.card:not(:first-child) {
+  margin-left: -5rem;
+  box-shadow: -1rem 0 3rem #000;
+}
+
+.card::before, .card::after {
+  position: absolute;
+  content: attr(data-value);
+  font-size: 1rem;
+}
+
+.card::before {
+  top: .5rem;
+  left: .5rem;
+}
+
+.card::after {
+  bottom: .5rem;
+  right: .5rem;
+  transform: rotate(180deg);
+}
+
 .felt {
-  background-color: #35654d;
+  background-color: #014D43;
 }
 
 .no-drag {
@@ -14,4 +50,64 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-app-region: drag;
+}
+
+.pokerchip {
+  margin: 1em;
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5), 0 0 3px 0 rgba(0, 0, 0, 0.4) inset;
+  border-radius: 50%;
+  background-size: 100px 100px;
+  background-position: center center;
+}
+
+.pokerchip:before {
+  position: absolute;
+  content: "";
+  z-index: 1;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  top: 6px;
+  left: 6px;
+  background-size: 100px 100px;
+  background-position: center center;
+}
+
+.pokerchip:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  text-align: center;
+  /* font: bold 50px/74px Arial; */
+  white-space: pre;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  top: 20px;
+  left: 20px;
+  text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3), 1px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.black {
+  background-image:
+    linear-gradient(transparent 0, transparent 40px, #fff 40px, #fff 60px, transparent 60px, transparent 100px),
+    linear-gradient(60deg, transparent 0, transparent 60px, #fff 60px, #fff 80px, transparent 80px, transparent 100px)
+    linear-gradient(120deg, blue)
+    /* linear-gradient(0deg, transparent 0, transparent 67.5px, #fff 67.5px, #fff 83.5px, transparent 83.5px, transparent 100px) */
+    /* linear-gradient(60deg, transparent 0, transparent 97.4304px, #fff 97.4304px, #fff 113.4304px, transparent 113.4304px, transparent 100px) */
+    /* linear-gradient(120deg, #222222 0, #222222 97.4304px, #fff 97.4304px, #fff 113.4304px, #222222 113.4304px, #222222 100px) */
+    ;
+}
+.black:before {
+  border: 8px solid #222222;
+  /* background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 100px), linear-gradient(30deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 100px), linear-gradient(60deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 100px), linear-gradient(90deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 100px), linear-gradient(120deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 100px), linear-gradient(150deg, #000000 0, #000000 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, #000000 110.7104px, #000000 100px); */
+}
+.black:after {
+  /* content: "100"; */
+  /* background: #222222; */
+  /* color: #000000; */
 }
