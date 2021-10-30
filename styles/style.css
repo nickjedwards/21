@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.felt {
+  background-color: #35654d;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.draggable {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
