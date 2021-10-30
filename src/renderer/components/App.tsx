@@ -20,7 +20,7 @@ export default class App extends Component {
               <Card face="♣" value={3} />
               <Card face="♦" value={6} />
             </div>
-            <div className="h-1/2 border-4 border-white rounded-lg">
+            <div className="h-1/2 flex justify-center border-4 border-white rounded-lg p-10">
               {/* Bet */}
               <div className="pokerchip black" />
             </div>
