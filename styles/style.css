@@ -3,22 +3,21 @@
 @tailwind utilities;
 
 .card {
-  /* width: 8rem; */
-  /* height: 200px; */
   transition: .2s;
 }
 
 .card:hover {
-  transform: translateY(-1rem);
+  transform: translateY(-20px);
 }
 
 .card:hover~.card {
-  transform: translateX(2.5rem);
+  transform: translateX(40px);
 }
 
 .card:not(:first-child) {
-  margin-left: -5rem;
-  box-shadow: -1rem 0 3rem #000;
+  margin-left: -90px;
+  /* box-shadow: -1rem 0 3rem #000; */
+  box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.5);
 }
 
 .card::before, .card::after {
