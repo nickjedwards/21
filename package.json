@@ -4,6 +4,8 @@
   "main": "./build/index.js",
   "author": "Nick",
   "dependencies": {
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.5",
     "electron": "^15.3.0",
     "electron-reloader": "^1.2.1",
     "react": "^17.0.2",

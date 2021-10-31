@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./Card/Card";
+import Players from "./Players/Players";
 
 export default class App extends Component {
   // After the component did mount, we set the state each second.
@@ -12,22 +13,34 @@ export default class App extends Component {
     return (
       <div className="felt w-screen h-screen flex flex-col">
         {/* Dealer */}
-        <div className="h-1/3" />
+        <div className="h-1/2" />
         {/* Player */}
-        <div className="h-2/3 flex justify-evenly">
-          <div className="md:w-1/5">
-            <div className="h-1/2 flex flex-row">
+        <div className="h-1/2 flex justify-evenly">
+          <div className="relative md:w-1/3">
+            <div className="absolute top-0 left-0 flex flex-row h-52 ml-4">
+              <Card face="♣" value={7} />
+              <Card face="♦" value={2} />
+            </div>
+            <div className="w-40 h-56 flex justify-center items-center border-4 border-white mt-44 rounded-lg">
+              {/* Bet */}
+              <div className="chip black" data-value="100" />
+            </div>
+          </div>
+          <div className="relative md:w-1/3">
+            <div className="absolute top-0 left-0 flex flex-row h-52 ml-4">
               <Card face="♣" value={3} />
               <Card face="♦" value={6} />
             </div>
-            <div className="h-1/2 flex justify-center border-4 border-white rounded-lg p-10">
+            <div className="w-40 h-56 flex justify-center items-center border-4 border-white mt-44 rounded-lg">
               {/* Bet */}
-              <div className="pokerchip black" />
+              <div className="chip black" data-value="50" />
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 rounded-lg ml-1 mb-1">
+        <Players />
+
+        <div className="absolute bottom-0 left-0 bg-black bg-opacity-25 rounded-lg ml-1 mb-1">
           <dl className="text-sm text-gray-100 sm:divide-y sm:divide-black sm:divide-opacity-25">
             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
               <dt className="font-medium">Count</dt>

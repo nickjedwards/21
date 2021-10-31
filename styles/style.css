@@ -52,7 +52,7 @@
   -webkit-app-region: drag;
 }
 
-.pokerchip {
+.chip {
   position: relative;
   display: inline-block;
   width: 100px;
@@ -63,10 +63,9 @@
   background-position: center center;
 }
 
-.pokerchip:before {
+.chip:before {
   position: absolute;
   content: "";
-  z-index: 1;
   width: 88px;
   height: 88px;
   border-radius: 50%;
@@ -76,12 +75,11 @@
   background-position: center center;
 }
 
-.pokerchip:after {
-  z-index: 2;
+.chip:after {
   position: absolute;
   content: "";
   text-align: center;
-  font: bold 25px/70px Arial;
+  font: bold 18px/70px Arial;
   white-space: pre;
   width: 70px;
   height: 70px;
@@ -92,23 +90,16 @@
 }
 
 .black {
-  background-image:
-    linear-gradient(transparent 0, transparent 42px, #fff 42px, #fff 58px, transparent 58px, transparent 100px),
-    linear-gradient(60deg, transparent 0, transparent 62px, #fff 62px, #fff 78px, transparent 78px, transparent 100px),
-    linear-gradient(120deg, #222 0, #222 62px, #fff 62px, #fff 78px, #222 78px, #222 100px);
+  background-image: linear-gradient(transparent 0, transparent 42px, #fff 42px, #fff 58px, transparent 58px, transparent 100px), linear-gradient(60deg, transparent 0, transparent 62px, #fff 62px, #fff 78px, transparent 78px, transparent 100px), linear-gradient(120deg, #222 0, #222 62px, #fff 62px, #fff 78px, #222 78px, #222 100px);
 }
+
 .black:before {
   border: 6px solid #222222;
-  background-image:
-    linear-gradient(transparent 0, transparent 48px, #EBEBEB 48px, #EBEBEB 52px, transparent 52px, transparent 100px),
-    linear-gradient(30deg, transparent 0, transparent 68px, #EBEBEB 68px, #EBEBEB 72px, transparent 72px, transparent 100px),
-    linear-gradient(60deg, transparent 0, transparent 68px, #EBEBEB 68px, #EBEBEB 72px, transparent 72px, transparent 100px),
-    linear-gradient(90deg, transparent 0, transparent 48px, #EBEBEB 48px, #EBEBEB 52px, transparent 52px, transparent 100px),
-    linear-gradient(120deg, transparent 68px, #EBEBEB 68px, #EBEBEB 72px, transparent 72px, transparent 100px),
-    linear-gradient(150deg, #000000 0, #000000 68px, #EBEBEB 68px, #EBEBEB 72px, #000000 72px, #000000 100px);
+  background-image: linear-gradient(transparent 0, transparent 48px, #EBEBEB 48px, #EBEBEB 52px, transparent 52px, transparent 100px), linear-gradient(30deg, transparent 0, transparent 68px, #EBEBEB 68px, #EBEBEB 72px, transparent 72px, transparent 100px), linear-gradient(60deg, transparent 0, transparent 68px, #EBEBEB 68px, #EBEBEB 72px, transparent 72px, transparent 100px), linear-gradient(90deg, transparent 0, transparent 48px, #EBEBEB 48px, #EBEBEB 52px, transparent 52px, transparent 100px), linear-gradient(120deg, transparent 68px, #EBEBEB 68px, #EBEBEB 72px, transparent 72px, transparent 100px), linear-gradient(150deg, #000000 0, #000000 68px, #EBEBEB 68px, #EBEBEB 72px, #000000 72px, #000000 100px);
 }
+
 .black:after {
-  content: "100";
+  content: attr(data-value);
   background: #222222;
   color: #000000;
 }

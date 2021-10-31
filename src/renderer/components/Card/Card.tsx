@@ -11,7 +11,7 @@ export default class Card extends PureComponent<CardProps> {
 
     return (
       <div
-        className="card relative w-1/2 h-full flex bg-white rounded-lg justify-center items-center text-5xl"
+        className="card relative h-52 w-36 flex bg-white justify-center items-center rounded-lg text-5xl"
         data-value={`${value} ${face}`}
       >
         {face}
