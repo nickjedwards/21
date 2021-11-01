@@ -74,17 +74,19 @@ export default class Players extends PureComponent<
                     <ul className="flex-1 divide-y divide-gray-200 overflow-y-auto">
                       <li>
                         <div className="relative group py-6 px-5 flex items-center">
-                          <button
-                            type="button"
-                            className="-m-1 flex-1 block p-1"
-                          >
+                          <div className="-m-1 flex-1 block p-1">
                             <div
                               className="absolute inset-0 group-hover:bg-gray-50"
                               aria-hidden="true"
                             />
                             <div className="flex-1 flex items-center min-w-0 relative">
                               <span className="flex-shrink-0 inline-block relative">
-                                {/* <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" /> */}
+                                <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-500">
+                                  <span className="font-medium leading-none text-white">
+                                    NE
+                                  </span>
+                                </span>
+
                                 <span
                                   className="bg-green-400 absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white"
                                   aria-hidden="true"
@@ -92,14 +94,14 @@ export default class Players extends PureComponent<
                               </span>
                               <div className="ml-4 truncate">
                                 <p className="text-sm font-medium text-gray-900 truncate">
-                                  Nick
+                                  Nick Edwards
                                 </p>
                                 <p className="text-sm text-gray-500 truncate">
-                                  Count
+                                  NE
                                 </p>
                               </div>
                             </div>
-                          </button>
+                          </div>
                         </div>
                       </li>
                     </ul>
