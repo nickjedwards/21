@@ -3,20 +3,12 @@
 @tailwind utilities;
 
 .card {
-  transition: .2s;
-}
-
-.card:hover {
-  transform: translateY(-20px);
-}
-
-.card:hover~.card {
-  transform: translateX(40px);
+  position: relative;
 }
 
 .card:not(:first-child) {
-  margin-left: -90px;
-  /* box-shadow: -1rem 0 3rem #000; */
+  /* margin-top: -80px; */
+  margin-left: -55px;
   box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.5);
 }
 
@@ -36,6 +28,29 @@
   right: .5rem;
   transform: rotate(180deg);
 }
+
+.player-deck .card {
+  position: absolute;
+  transition: .2s;
+}
+
+.player-deck .card:hover {
+  transform: translateY(-5px);
+}
+
+.player-deck .card:hover~.card {
+  transform: translateX(15px);
+}
+
+.player-deck .card:not(:first-child) {
+  margin-left: 0;
+  box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.5);
+}
+
+.player-deck .card:nth-child(1) { left: 0; bottom: 0; }
+.player-deck .card:nth-child(2) { left: 26px; bottom: 16px; }
+.player-deck .card:nth-child(3) { left: 52px; bottom: 32px; }
+.player-deck .card:nth-child(4) { left: 78px; bottom: 58px; }
 
 .felt {
   background-color: #014D43;

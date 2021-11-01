@@ -14,7 +14,12 @@ export default class App extends Component {
     return (
       <div className="felt w-screen h-screen flex flex-col">
         {/* Dealer */}
-        <div className="" />
+        <div className="flex justify-center w-full p-4">
+          <div className="h-40 flex flex-row">
+            <Card face="♣" value={7} />
+            <Card face="♣" value={7} />
+          </div>
+        </div>
 
         {/* Player */}
         <div className="flex flex-1">
@@ -25,43 +30,78 @@ export default class App extends Component {
                   <dt className="font-medium">Count</dt>
                   <dd className="mt-1 sm:mt-0 sm:col-span-2">9</dd>
                 </div>
-                <div className="py-4  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
                   <dt className=" font-medium">Bet</dt>
                   <dd className="mt-1 sm:mt-0 sm:col-span-2">$100</dd>
                 </div>
-                <div className="py-4  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
+                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
                   <dt className=" font-medium">Purse</dt>
                   <dd className="mt-1 sm:mt-0 sm:col-span-2">$500</dd>
                 </div>
               </dl>
             </div>
           </div>
-          <div className="flex justify-between items-end md:w-3/5 p-4">
-            <div className="relative md:w-1/3">
-              <div className="absolute top-0 left-0 flex flex-row h-52 ml-4">
+
+          <div className="flex flex-col justify-end items-center md:w-3/5 p-4">
+            <div className="flex justify-around w-full -mb-6">
+              <div className="player-deck relative w-28 h-40 flex flex-row">
                 <Card face="♣" value={7} />
                 <Card face="♦" value={2} />
+                <Card face="♦" value={2} />
+                <Card face="♦" value={2} />
               </div>
-              <div className="w-40 h-56 flex justify-center items-center border-4 border-white mt-44 rounded-lg">
-                {/* Bet */}
-                <div className="chip black" data-value="100" />
-              </div>
+              {/* <div className="player-deck relative w-28 h-40 flex flex-row">
+                <Card face="♣" value={7} />
+                <Card face="♦" value={2} />
+                <Card face="♦" value={2} />
+                <Card face="♦" value={2} />
+              </div> */}
             </div>
-            <div className="relative md:w-1/3">
-              <div className="absolute top-0 left-0 flex flex-row h-52 ml-4">
-                <Card face="♣" value={3} />
-                <Card face="♦" value={6} />
-              </div>
-              <div className="w-40 h-56 flex justify-center items-center border-4 border-white mt-44 rounded-lg">
-                {/* Bet */}
-                <div className="chip black" data-value="50" />
-              </div>
+            <div className="w-40 h-56 flex justify-center items-center border-4 border-white rounded-lg">
+              {/* Bet */}
+              <div className="chip black" data-value="100" />
             </div>
           </div>
+
           <div className="md:w-1/5" />
         </div>
 
-        <Players />
+        <div className="flex justify-center">
+          <span className="relative z-0 inline-flex shadow-sm rounded-md">
+            <button
+              type="button"
+              className="relative inline-flex items-center px-4 py-2 rounded-tl-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+            >
+              Hit
+            </button>
+            <button
+              type="button"
+              className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+            >
+              Stand
+            </button>
+            <button
+              type="button"
+              className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+            >
+              Double down
+            </button>
+            <button
+              type="button"
+              className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+            >
+              Split
+            </button>
+            <button
+              type="button"
+              className="-ml-px relative inline-flex items-center px-4 py-2 rounded-tr-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+            >
+              Surrender
+            </button>
+          </span>
+        </div>
+
+        {/* <Players /> */}
 
         <Notification />
       </div>

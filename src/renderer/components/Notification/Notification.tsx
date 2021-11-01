@@ -16,8 +16,6 @@ export default class Notification extends PureComponent<
 
   public onClose = () => {
     this.setState({ show: false });
-
-    setTimeout(() => this.setState({ show: true }), 5000);
   };
 
   render(): JSX.Element {
