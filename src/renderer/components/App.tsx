@@ -21,7 +21,7 @@ export default class App extends PureComponent {
                 <dd className="mt-1 sm:mt-0 sm:col-span-2">$100</dd>
               </div>
               <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
-                <dt className=" font-medium">Purse</dt>
+                <dt className=" font-medium">Balance</dt>
                 <dd className="mt-1 sm:mt-0 sm:col-span-2">$500</dd>
               </div>
             </dl>
@@ -33,11 +33,11 @@ export default class App extends PureComponent {
           {/* Dealer */}
           <div className="flex flex-col justify-between items-center w-2/4 p-4">
             <div className="h-40 flex flex-row justify-center mb-6">
-              <Card face="♣" value={7} />
-              <Card face="♣" value={7} flipped />
+              <Card suit="♣" value={7} />
+              <Card suit="♣" value={7} flipped />
             </div>
 
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
               Dealer: 7
             </span>
           </div>
@@ -47,16 +47,14 @@ export default class App extends PureComponent {
             <div className="flex flex-col justify-end items-center">
               <div className="flex justify-around w-full -mb-6">
                 <div className="player relative w-28 h-40 flex flex-row">
-                  <Card face="♣" value={7} />
-                  <Card face="♦" value={2} />
-                  <Card face="♦" value={2} />
-                  <Card face="♦" value={2} />
+                  <Card suit="♣" value={7} />
+                  <Card suit="♦" value={2} />
                 </div>
                 {/* <div className="player relative w-28 h-40 flex flex-row">
-                  <Card face="♣" value={7} />
-                  <Card face="♦" value={2} />
-                  <Card face="♦" value={2} />
-                  <Card face="♦" value={2} />
+                  <Card suit="♣" value={7} />
+                  <Card suit="♦" value={2} />
+                  <Card suit="♦" value={2} />
+                  <Card suit="♦" value={2} />
                 </div> */}
               </div>
               <div className="w-40 h-56 flex justify-center items-center border-4 border-white rounded-lg">
@@ -64,8 +62,8 @@ export default class App extends PureComponent {
                 <div className="chip black" data-value="100" />
               </div>
 
-              <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
-                Me: 13
+              <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                Me: 9
               </span>
             </div>
 

@@ -96,9 +96,12 @@ export default class Players extends PureComponent<
                                 <p className="text-sm font-medium text-gray-900 truncate">
                                   Nick Edwards
                                 </p>
-                                <p className="text-sm text-gray-500 truncate">
-                                  NE
-                                </p>
+                                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                                  7 ♣
+                                </span>
+                                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 ml-2">
+                                  2 ♦
+                                </span>
                               </div>
                             </div>
                           </div>
