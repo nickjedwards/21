@@ -1,7 +1,7 @@
 import React, { FormEvent, PureComponent } from "react";
 
 type LoginProps = {
-  onSubmit: CallableFunction;
+  onSubmit: (name?: string, table?: string) => void;
 };
 
 export default class Login extends PureComponent<LoginProps> {
