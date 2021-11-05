@@ -53,8 +53,6 @@ class Main {
 }
 
 try {
-  process.env.ELECRON_DISABLE_SECURITY_WARNINGS = "true";
-
   electronReloader(module);
 } catch {
   //

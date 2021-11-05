@@ -3,9 +3,28 @@
   "version": "1.0.0",
   "main": "./build/index.js",
   "author": "Nick",
+  "targets": {
+    "main": {
+      "distDir": "./build/main",
+      "context": "electron-main"
+    },
+    "renderer": {
+      "distDir": "./build/renderer",
+      "publicUrl": "./"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:main && npm run build:renderer",
+    "build:main": "parcel build ./src/main/index.ts --target=main",
+    "build:renderer": "parcel build ./src/renderer/index.html --target=renderer",
+    "dev": "concurrently --kill-others \"npm run dev:renderer\" \"electron .\"",
+    "dev:renderer": "parcel watch ./src/renderer/index.html --target=renderer",
+    "dev:serve": "parcel serve ./src/renderer/index.html --dist-dir ./build/renderer"
+  },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.5",
+    "@tailwindcss/forms": "^0.3.4",
     "electron": "^15.3.0",
     "electron-reloader": "^1.2.1",
     "react": "^17.0.2",
@@ -34,23 +53,5 @@
     "postcss": "^8.3.11",
     "prettier": "^2.4.1",
     "typescript": "^4.4.4"
-  },
-  "scripts": {
-    "build": "npm run build:main && npm run build:renderer",
-    "build:main": "parcel build ./src/main/index.ts --target=main",
-    "build:renderer": "parcel build ./src/renderer/index.html --target=renderer",
-    "dev": "concurrently --kill-others \"npm run dev:renderer\" \"electron .\"",
-    "dev:renderer": "parcel watch ./src/renderer/index.html --target=renderer",
-    "dev:serve": "parcel serve ./src/renderer/index.html --dist-dir ./build/renderer"
-  },
-  "targets": {
-    "main": {
-      "distDir": "./build/main",
-      "context": "electron-main"
-    },
-    "renderer": {
-      "distDir": "./build/renderer",
-      "publicUrl": "./"
-    }
   }
 }
