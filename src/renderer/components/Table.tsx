@@ -71,14 +71,14 @@ export default class Table extends PureComponent<
                   <Card suit="♦" value={2} />
                 </div> */}
               </div>
-              <div className="w-40 h-56 flex justify-center items-center border-4 border-white rounded-lg">
+              <div className="w-40 h-56 flex justify-center items-center border-4 border-white rounded-lg mb-16">
                 {/* Bet */}
                 {/* <div className="chip black" data-value="100" /> */}
               </div>
 
-              <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+              {/* <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
                 My hand: 9
-              </span>
+              </span> */}
             </div>
 
             {/* Player actions */}
