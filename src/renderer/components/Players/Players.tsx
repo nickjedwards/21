@@ -2,31 +2,21 @@ import React, { Fragment, PureComponent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 
-type PlayersState = {
+type PlayersProps = {
   open: boolean;
+  onClose: () => void;
 };
 
-export default class Players extends PureComponent<
-  Record<string, never>,
-  PlayersState
-> {
-  state: PlayersState = {
-    open: true,
-  };
-
-  public onClose = () => {
-    this.setState({ open: false });
-  };
-
+export default class Players extends PureComponent<PlayersProps> {
   render(): JSX.Element {
-    const { open } = this.state;
+    const { open, onClose } = this.props;
 
     return (
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 overflow-hidden"
-          onClose={this.onClose}
+          onClose={onClose}
         >
           <div className="absolute inset-0 overflow-hidden">
             <Transition.Child
@@ -62,7 +52,7 @@ export default class Players extends PureComponent<
                           <button
                             type="button"
                             className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-green-500"
-                            onClick={() => this.onClose()}
+                            onClick={() => onClose()}
                           >
                             <span className="sr-only">Close panel</span>
                             <XIcon className="h-6 w-6" aria-hidden="true" />

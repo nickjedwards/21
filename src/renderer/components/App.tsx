@@ -25,7 +25,7 @@ export default class App extends PureComponent<
     this.setState({ name, table });
   }
 
-  public onJoin = (name: string, table: string) => {
+  public onJoin = (name = "", table = "") => {
     localStorage.setItem(`${PREFIX}name`, name);
     localStorage.setItem(`${PREFIX}table`, table);
 
