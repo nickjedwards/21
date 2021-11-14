@@ -3,6 +3,7 @@ import { MenuAlt2Icon } from "@heroicons/react/outline";
 import Card from "./Card/Card";
 import Players from "./Players/Players";
 import Notification from "./Notification/Notification";
+import Context from "../context/tableContext";
 
 type TableState = {
   isPlayerDrawerOpen: boolean;
@@ -16,8 +17,13 @@ export default class Table extends PureComponent<
     isPlayerDrawerOpen: false,
   };
 
+  static contextType = Context;
+
+  public context!: React.ContextType<typeof Context>;
+
   render(): JSX.Element {
     const { isPlayerDrawerOpen } = this.state;
+    const { leave } = this.context;
 
     return (
       <div className="felt w-screen h-screen flex overflow-hidden">
@@ -131,6 +137,15 @@ export default class Table extends PureComponent<
           type="button"
           className="absolute bottom-0 right-0 p-4 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
           onClick={() => this.setState({ isPlayerDrawerOpen: true })}
+        >
+          <span className="sr-only">Open sidebar</span>
+          <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
+        </button>
+
+        <button
+          type="button"
+          className="absolute bottom-16 right-0 p-4 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
+          onClick={leave}
         >
           <span className="sr-only">Open sidebar</span>
           <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
