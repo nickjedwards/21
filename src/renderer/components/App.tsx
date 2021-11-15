@@ -4,8 +4,8 @@ import Table from "./Table";
 import Context from "../context/tableContext";
 
 type AppState = {
-  name: string;
-  table: ITable | undefined;
+  player?: IPlayer;
+  table?: ITable;
 };
 
 const PREFIX = "21-";
@@ -15,40 +15,45 @@ export default class App extends PureComponent<
   AppState
 > {
   state: AppState = {
-    name: "",
+    player: undefined,
     table: undefined,
   };
 
   public componentDidMount() {
-    const name = localStorage.getItem(`${PREFIX}name`) || "";
-    const table: ITable | undefined = JSON.parse(
-      localStorage.getItem(`${PREFIX}table`) || "",
-    );
-
-    this.setState({ name, table });
-  }
-
-  public onJoin = (name = "") => {
-    localStorage.setItem(`${PREFIX}name`, name);
+    const player: string | null = localStorage.getItem(`${PREFIX}player`);
+    const table: string | null = localStorage.getItem(`${PREFIX}table`);
 
     this.setState({
-      name,
-      table: { id: 1, name: "winner winner", players: [] },
+      player: player ? JSON.parse(player) : undefined,
+      table: table ? JSON.parse(table) : undefined,
+    });
+  }
+
+  public onJoin = (playerName = "", tableName = "") => {
+    const player: IPlayer = { name: playerName, hands: [] };
+    const table: ITable = { id: 1, name: tableName, players: [player] };
+
+    localStorage.setItem(`${PREFIX}player`, JSON.stringify(player));
+    localStorage.setItem(`${PREFIX}table`, JSON.stringify(table));
+
+    this.setState({
+      player,
+      table,
     });
   };
 
   public onLeave = () => {
     localStorage.clear();
 
-    this.setState({ name: "", table: undefined });
+    this.setState({ player: undefined, table: undefined });
   };
 
   public render(): JSX.Element {
-    const { name, table } = this.state;
+    const { player, table } = this.state;
 
     return (
       <div className="w-screen h-screen flex overflow-hidden">
-        {name && table ? (
+        {player && table ? (
           <Context.Provider
             value={{
               table,
