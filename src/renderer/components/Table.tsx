@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { MenuAlt2Icon } from "@heroicons/react/outline";
 import Card from "./Card/Card";
 import Players from "./Players/Players";
-import Notification from "./Notification/Notification";
 
 type TableState = {
   isPlayerDrawerOpen: boolean;
@@ -18,7 +17,6 @@ export default class Table extends PureComponent<
 
   render(): JSX.Element {
     const { isPlayerDrawerOpen } = this.state;
-    const { leave } = this.context;
 
     return (
       <div className="felt w-screen h-screen flex overflow-hidden">
@@ -136,8 +134,6 @@ export default class Table extends PureComponent<
           <span className="sr-only">Open sidebar</span>
           <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
         </button>
-
-        <Notification />
       </div>
     );
   }

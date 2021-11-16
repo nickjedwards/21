@@ -2,10 +2,12 @@ import React, { PureComponent } from "react";
 import Login from "./Login";
 import Table from "./Table";
 import Context from "../context/tableContext";
+import Notification from "./Notification/Notification";
 
 type AppState = {
   player?: IPlayer;
   table?: ITable;
+  notifications: string[];
 };
 
 const PREFIX = "21-";
@@ -17,6 +19,7 @@ export default class App extends PureComponent<
   state: AppState = {
     player: undefined,
     table: undefined,
+    notifications: [],
   };
 
   public componentDidMount() {
@@ -39,6 +42,7 @@ export default class App extends PureComponent<
     this.setState({
       player,
       table,
+      notifications: [`${player.name} has joined the table`],
     });
   };
 
@@ -49,7 +53,7 @@ export default class App extends PureComponent<
   };
 
   public render(): JSX.Element {
-    const { player, table } = this.state;
+    const { player, table, notifications} = this.state;
 
     return (
       <div className="w-screen h-screen flex overflow-hidden">
@@ -65,6 +69,17 @@ export default class App extends PureComponent<
         ) : (
           <Login onSubmit={this.onJoin} />
         )}
+
+        <div
+          aria-live="assertive"
+          className="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
+        >
+          <div className="w-full flex flex-col items-center space-y-4 sm:items-end">
+            {notifications.map(notification => (
+              <Notification notification={notification} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

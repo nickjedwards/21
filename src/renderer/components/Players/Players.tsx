@@ -98,7 +98,7 @@ export default class Players extends PureComponent<PlayersProps> {
                     <div className="flex-shrink-0 px-4 py-4 flex justify-end">
                       <button
                         type="button"
-                        className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        className="bg-red-100 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                         onClick={leave}
                       >
                         Leave table
