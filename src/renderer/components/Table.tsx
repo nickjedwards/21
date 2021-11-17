@@ -3,17 +3,23 @@ import { MenuAlt2Icon } from "@heroicons/react/outline";
 import Card from "./Card/Card";
 import Players from "./Players/Players";
 
+type Props = {
+  player: IPlayer;
+};
+
 type State = {
   isPlayerDrawerOpen: boolean;
 };
 
-export default class Table extends PureComponent<Record<string, never>, State> {
+export default class Table extends PureComponent<Props, State> {
   public state: State = {
     isPlayerDrawerOpen: false,
   };
 
   render(): JSX.Element {
     const { isPlayerDrawerOpen } = this.state;
+
+    const { player } = this.props;
 
     return (
       <div className="felt w-screen h-screen flex overflow-hidden">
@@ -56,25 +62,28 @@ export default class Table extends PureComponent<Record<string, never>, State> {
           <div>
             <div className="flex flex-col justify-end items-center">
               <div className="flex justify-around w-full -mb-6">
-                {/* <div className="player relative w-28 h-40 flex flex-row">
-                  <Card suit="♣" value={7} />
-                  <Card suit="♦" value={2} />
-                </div> */}
-                {/* <div className="player relative w-28 h-40 flex flex-row">
-                  <Card suit="♣" value={7} />
-                  <Card suit="♦" value={2} />
-                  <Card suit="♦" value={2} />
-                  <Card suit="♦" value={2} />
-                </div> */}
+                {player.hands.map(hand => (
+                  <div className="flex flex-col">
+                    <div className="player relative w-28 h-40 flex flex-row">
+                      {hand.cards.map(card => (
+                        <Card
+                          suit={card.suit}
+                          value={card.value}
+                          flipped={card.flipped}
+                        />
+                      ))}
+                    </div>
+
+                    <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                      This hand: {hand.points()}
+                    </span>
+                  </div>
+                ))}
               </div>
               <div className="w-40 h-56 flex justify-center items-center border-4 border-white rounded-lg mb-16">
                 {/* Bet */}
                 {/* <div className="chip black" data-value="100" /> */}
               </div>
-
-              {/* <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-                My hand: 9
-              </span> */}
             </div>
 
             {/* Player actions */}

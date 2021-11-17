@@ -1,12 +1,6 @@
 import React, { PureComponent } from "react";
 
-type CardProps = {
-  suit: string;
-  value: number;
-  flipped: boolean;
-};
-
-export default class Card extends PureComponent<CardProps> {
+export default class Card extends PureComponent<ICard> {
   public static defaultProps = {
     flipped: false,
   };

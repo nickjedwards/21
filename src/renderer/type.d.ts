@@ -6,10 +6,12 @@ interface ICard {
 
 interface IHand {
   cards: ICard[];
+  points: () => number;
 }
 
 interface IPlayer {
-  name: string;
+  id?: number;
+  name?: string;
   hands: IHand[];
 }
 

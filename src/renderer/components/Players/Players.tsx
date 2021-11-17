@@ -60,7 +60,7 @@ export default class Players extends PureComponent<PlayersProps> {
                       </div>
                       <ul className="mt-6 relative flex-1 divide-y divide-gray-200 overflow-y-auto">
                         {table?.players.map(player => (
-                          <li>
+                          <li key={player.id}>
                             <Player player={player} />
                           </li>
                         ))}
