@@ -3,15 +3,12 @@ import { MenuAlt2Icon } from "@heroicons/react/outline";
 import Card from "./Card/Card";
 import Players from "./Players/Players";
 
-type TableState = {
+type State = {
   isPlayerDrawerOpen: boolean;
 };
 
-export default class Table extends PureComponent<
-  Record<string, never>,
-  TableState
-> {
-  public state: TableState = {
+export default class Table extends PureComponent<Record<string, never>, State> {
+  public state: State = {
     isPlayerDrawerOpen: false,
   };
 

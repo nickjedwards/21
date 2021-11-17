@@ -53,7 +53,7 @@ export default class App extends PureComponent<
   };
 
   public render(): JSX.Element {
-    const { player, table, notifications} = this.state;
+    const { player, table, notifications } = this.state;
 
     return (
       <div className="w-screen h-screen flex overflow-hidden">
