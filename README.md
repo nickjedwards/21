@@ -19,5 +19,5 @@ npm run dev
 Develop in browser
 
 ```sh
-npm run serve
+npm run dev:serve
 ```
