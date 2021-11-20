@@ -36,7 +36,21 @@ export default class Card implements ICard {
     this.flipped = flipped;
   }
 
+  get faceValue(): string {
+    return `${this.isAce() ? "A" : String(this.value)} ${this.suit}`;
+  }
+
   public flip(): void {
     this.flipped = !this.flipped;
+  }
+
+  public isRed(): boolean {
+    return [Suit.Diamonds, Suit.Hearts].some(
+      (suit: Suit) => suit === this.suit,
+    );
+  }
+
+  public isAce(): boolean {
+    return this.value === 11;
   }
 }

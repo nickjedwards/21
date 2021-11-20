@@ -2,7 +2,10 @@ interface ICard {
   suit: string;
   value: number;
   flipped: boolean;
+  faceValue: string;
   flip(): void;
+  isRed(): boolean;
+  isAce(): boolean;
 }
 
 interface IDeck {

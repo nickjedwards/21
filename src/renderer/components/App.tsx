@@ -25,21 +25,22 @@ export default class App extends PureComponent<
     notifications: [],
   };
 
-  public componentDidMount() {
-    const player: IPlayer = Object.assign(
-      new Player(),
-      JSON.parse(localStorage.getItem(`${PREFIX}player`) || "{}"),
-    );
+  // public componentDidMount() {
+  //   const table: ITable = Object.assign(
+  //     new Table(),
+  //     JSON.parse(localStorage.getItem(`${PREFIX}table`) || "{}"),
+  //   );
 
-    player.hands = player.hands.map(hand => new Hand(hand.cards));
+  //   const player: IPlayer = Object.assign(
+  //     new Player(),
+  //     JSON.parse(localStorage.getItem(`${PREFIX}player`) || "{}"),
+  //   );
 
-    const table: ITable = Object.assign(
-      new Table(),
-      JSON.parse(localStorage.getItem(`${PREFIX}table`) || "{}"),
-    );
+  //   table.dealer.hands = table.dealer.hands.map(hand => new Hand(hand.cards));
+  //   player.hands = player.hands.map(hand => new Hand(hand.cards));
 
-    this.setState({ player, table });
-  }
+  //   this.setState({ player, table });
+  // }
 
   public onJoin = (playerName = "", tableName = "") => {
     const table: ITable = new Table(1, tableName);
@@ -47,8 +48,8 @@ export default class App extends PureComponent<
 
     table.join(player);
 
-    localStorage.setItem(`${PREFIX}player`, JSON.stringify(player));
-    localStorage.setItem(`${PREFIX}table`, JSON.stringify(table));
+    // localStorage.setItem(`${PREFIX}player`, JSON.stringify(player));
+    // localStorage.setItem(`${PREFIX}table`, JSON.stringify(table));
 
     this.setState({
       player,

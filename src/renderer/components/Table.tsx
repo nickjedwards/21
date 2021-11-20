@@ -50,15 +50,10 @@ export default class Table extends PureComponent<Props, State> {
           {/* Dealer */}
           <div className="flex flex-col justify-between items-center w-2/4 p-4">
             {dealer.hands.map(hand => (
-              <div className="flex flex-col space-y-6">
-                <div className="h-40 flex flex-row justify-center mb-6">
+              <div className="flex-grow-0 flex-col space-y-6">
+                <div className="h-40 flex flex-row justify-center">
                   {hand.cards.map(card => (
-                    <Card
-                      suit={card.suit}
-                      value={card.value}
-                      flipped={card.flipped}
-                      flip={card.flip}
-                    />
+                    <Card card={card} />
                   ))}
                 </div>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
@@ -72,20 +67,15 @@ export default class Table extends PureComponent<Props, State> {
           <div className="flex flex-col justify-end items-center">
             <div className="flex justify-around w-full -mb-24 z-10">
               {player.hands.map(hand => (
-                <div className="flex flex-col space-y-6">
+                <div className="flex-grow-0 flex-col space-y-6">
                   <div className="player relative h-40 flex flex-row">
                     {hand.cards.map(card => (
-                      <Card
-                        suit={card.suit}
-                        value={card.value}
-                        flipped={card.flipped}
-                        flip={card.flip}
-                      />
+                      <Card card={card} />
                     ))}
                   </div>
 
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-                    This hand: {hand.points()}
+                    My hand: {hand.points()}
                   </span>
                 </div>
               ))}

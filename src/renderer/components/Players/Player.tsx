@@ -12,6 +12,20 @@ export default class Players extends PureComponent<Props> {
       .join("")
       .toUpperCase();
 
+  private getCard = (card: ICard) => {
+    const isRed: boolean = card.isRed();
+
+    return (
+      <span
+        className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+          isRed ? "bg-red-100 text-red-800" : "bg-gray-100 text-gray-800"
+        } mr-2`}
+      >
+        {card.faceValue}
+      </span>
+    );
+  };
+
   render(): JSX.Element {
     const { player } = this.props;
 
@@ -26,7 +40,7 @@ export default class Players extends PureComponent<Props> {
             <span className="flex-shrink-0 inline-block relative">
               <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-500">
                 <span className="font-medium leading-none text-white">
-                  {this.getInitials(player.name)}
+                  {this.getInitials(player.name || "")}
                 </span>
               </span>
 
@@ -37,14 +51,11 @@ export default class Players extends PureComponent<Props> {
             </span>
             <div className="ml-4 truncate">
               <p className="text-sm font-medium text-gray-900 truncate">
-                {player.name}
+                {player?.name}
               </p>
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                7 ♣
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 ml-2">
-                2 ♦
-              </span>
+              {player.hands[0].cards.map(
+                card => !card.flipped && this.getCard(card),
+              )}
             </div>
           </div>
         </div>
