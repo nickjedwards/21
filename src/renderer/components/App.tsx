@@ -3,7 +3,6 @@ import Login from "./Login";
 import TableComponent from "./Table";
 import TableProvider from "../providers/Table";
 import Notification from "./Notification/Notification";
-// import Hand from "../models/Hand";
 import Player from "../models/Player";
 import Table from "../models/Table";
 
@@ -12,8 +11,6 @@ type AppState = {
   table?: ITable;
   notifications: string[];
 };
-
-// const PREFIX = "21-";
 
 export default class App extends PureComponent<
   Record<string, never>,
