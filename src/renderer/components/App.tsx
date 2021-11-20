@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import Login from "./Login";
-import Table from "./Table";
+import TableComponent from "./Table";
 import Context from "../context/tableContext";
 import Notification from "./Notification/Notification";
-import Card, { Suit } from "../models/Card";
 import Hand from "../models/Hand";
 import Player from "../models/Player";
+import Table from "../models/Table";
 
 type AppState = {
   player?: IPlayer;
@@ -33,30 +33,19 @@ export default class App extends PureComponent<
 
     player.hands = player.hands.map(hand => new Hand(hand.cards));
 
-    const table: string | null = localStorage.getItem(`${PREFIX}table`);
+    const table: ITable = Object.assign(
+      new Table(),
+      JSON.parse(localStorage.getItem(`${PREFIX}table`) || "{}"),
+    );
 
-    this.setState({
-      player,
-      table: table ? JSON.parse(table) : undefined,
-    });
+    this.setState({ player, table });
   }
 
   public onJoin = (playerName = "", tableName = "") => {
-    const player: IPlayer = {
-      id: 1,
-      name: playerName,
-      hands: [
-        new Hand([
-          new Card(Suit.Hearts, 4, false),
-          new Card(Suit.Clubs, 5, false),
-        ]),
-        new Hand([
-          new Card(Suit.Spades, 1, false),
-          new Card(Suit.Diamonds, 6, false),
-        ]),
-      ],
-    };
-    const table: ITable = { id: 1, name: tableName, players: [player] };
+    const table: ITable = new Table(1, tableName);
+    const player: IPlayer = new Player(1, playerName);
+
+    table.join(player);
 
     localStorage.setItem(`${PREFIX}player`, JSON.stringify(player));
     localStorage.setItem(`${PREFIX}table`, JSON.stringify(table));
@@ -86,7 +75,7 @@ export default class App extends PureComponent<
               leave: this.onLeave,
             }}
           >
-            <Table player={player} />
+            <TableComponent player={player} />
           </Context.Provider>
         ) : (
           <Login onSubmit={this.onJoin} />

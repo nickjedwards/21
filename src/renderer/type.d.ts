@@ -2,6 +2,14 @@ interface ICard {
   suit: string;
   value: number;
   flipped: boolean;
+  flip(): ICard;
+}
+
+interface IDeck {
+  cards: ICard[];
+  shuffle(): void;
+  deal(): [ICard, ICard];
+  hit(): ICard;
 }
 
 interface IHand {
@@ -16,12 +24,14 @@ interface IPlayer {
 }
 
 interface ITable {
-  id: number;
-  name: string;
+  id?: number;
+  name?: string;
+  deck: IDeck;
   players: IPlayer[];
+  join(player: IPlayer): void;
 }
 
 type ContextType = {
   table: ITable | undefined;
-  leave: () => void;
+  leave(): void;
 };

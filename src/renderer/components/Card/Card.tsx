@@ -5,6 +5,12 @@ export default class Card extends PureComponent<ICard> {
     flipped: false,
   };
 
+  get value(): string {
+    const { value } = this.props;
+
+    return value === 11 ? "A" : String(value);
+  }
+
   get isRed(): boolean {
     const { suit } = this.props;
 
@@ -12,7 +18,7 @@ export default class Card extends PureComponent<ICard> {
   }
 
   render(): JSX.Element {
-    const { suit, value, flipped } = this.props;
+    const { suit, flipped } = this.props;
 
     return (
       <div
@@ -21,7 +27,7 @@ export default class Card extends PureComponent<ICard> {
         } ${
           this.isRed ? "text-red-500" : "text-black"
         } w-28 h-40 flex justify-center items-center rounded-lg border-4 border-white text-5xl`}
-        data-value={`${value} ${suit}`}
+        data-value={`${this.value} ${suit}`}
       >
         {flipped ? "" : suit}
       </div>

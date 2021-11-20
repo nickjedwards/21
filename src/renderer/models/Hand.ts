@@ -1,7 +1,8 @@
 export default class Hand implements IHand {
-  constructor(public cards: ICard[]) {
-    // eslint-disable-next-line no-console
-    console.log();
+  public cards: ICard[];
+
+  constructor(cards: ICard[] = []) {
+    this.cards = cards;
   }
 
   public points(): number {

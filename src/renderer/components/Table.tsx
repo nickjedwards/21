@@ -59,31 +59,29 @@ export default class Table extends PureComponent<Props, State> {
           </div>
 
           {/* Player */}
-          <div>
-            <div className="flex flex-col justify-end items-center">
-              <div className="flex justify-around w-full -mb-6">
-                {player.hands.map(hand => (
-                  <div className="flex flex-col">
-                    <div className="player relative w-28 h-40 flex flex-row">
-                      {hand.cards.map(card => (
-                        <Card
-                          suit={card.suit}
-                          value={card.value}
-                          flipped={card.flipped}
-                        />
-                      ))}
-                    </div>
-
-                    <span className="my-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-                      This hand: {hand.points()}
-                    </span>
+          <div className="flex flex-col justify-end items-center">
+            <div className="flex justify-around w-full -mb-24 z-10">
+              {player.hands.map(hand => (
+                <div className="flex flex-col space-y-6">
+                  <div className="player relative h-40 flex flex-row">
+                    {hand.cards.map(card => (
+                      <Card
+                        suit={card.suit}
+                        value={card.value}
+                        flipped={card.flipped}
+                      />
+                    ))}
                   </div>
-                ))}
-              </div>
-              <div className="w-40 h-56 flex justify-center items-center border-4 border-white rounded-lg mb-16">
-                {/* Bet */}
-                {/* <div className="chip black" data-value="100" /> */}
-              </div>
+
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                    This hand: {hand.points()}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="w-40 h-56 flex justify-center items-end border-4 border-white rounded-lg mb-10">
+              {/* Bet */}
+              {/* <div className="chip black" data-value="100" /> */}
             </div>
 
             {/* Player actions */}
