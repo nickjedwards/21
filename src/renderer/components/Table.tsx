@@ -4,6 +4,7 @@ import Card from "./Card/Card";
 import Players from "./Players/Players";
 
 type Props = {
+  table: ITable;
   dealer: IPlayer;
   player: IPlayer;
 };
@@ -15,6 +16,15 @@ type State = {
 export default class Table extends PureComponent<Props, State> {
   public state: State = {
     isPlayerDrawerOpen: false,
+  };
+
+  public hit = (hand: IHand): void => {
+    const {
+      table: { deck },
+      player,
+    } = this.props;
+
+    player.hit(deck, hand);
   };
 
   render(): JSX.Element {
@@ -92,6 +102,7 @@ export default class Table extends PureComponent<Props, State> {
                 <button
                   type="button"
                   className="relative inline-flex items-center px-4 py-2 rounded-tl-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                  onClick={() => this.hit(player.hands[0])}
                 >
                   Hit
                 </button>

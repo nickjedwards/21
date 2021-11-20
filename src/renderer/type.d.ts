@@ -25,6 +25,7 @@ interface IPlayer {
   name?: string;
   hands: IHand[];
   join(deck: IDeck): void;
+  hit(deck: IDeck, hand: IHand): void;
 }
 
 interface ITable {
@@ -36,7 +37,7 @@ interface ITable {
   join(player: IPlayer): void;
 }
 
-type ContextType = {
+type TableContext = {
   table: ITable | undefined;
   leave(): void;
 };

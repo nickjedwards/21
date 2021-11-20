@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import Login from "./Login";
 import TableComponent from "./Table";
-import Context from "../context/tableContext";
+import TableProvider from "../providers/Table";
 import Notification from "./Notification/Notification";
-import Hand from "../models/Hand";
+// import Hand from "../models/Hand";
 import Player from "../models/Player";
 import Table from "../models/Table";
 
@@ -13,7 +13,7 @@ type AppState = {
   notifications: string[];
 };
 
-const PREFIX = "21-";
+// const PREFIX = "21-";
 
 export default class App extends PureComponent<
   Record<string, never>,
@@ -25,31 +25,11 @@ export default class App extends PureComponent<
     notifications: [],
   };
 
-  // public componentDidMount() {
-  //   const table: ITable = Object.assign(
-  //     new Table(),
-  //     JSON.parse(localStorage.getItem(`${PREFIX}table`) || "{}"),
-  //   );
-
-  //   const player: IPlayer = Object.assign(
-  //     new Player(),
-  //     JSON.parse(localStorage.getItem(`${PREFIX}player`) || "{}"),
-  //   );
-
-  //   table.dealer.hands = table.dealer.hands.map(hand => new Hand(hand.cards));
-  //   player.hands = player.hands.map(hand => new Hand(hand.cards));
-
-  //   this.setState({ player, table });
-  // }
-
   public onJoin = (playerName = "", tableName = "") => {
     const table: ITable = new Table(1, tableName);
     const player: IPlayer = new Player(1, playerName);
 
     table.join(player);
-
-    // localStorage.setItem(`${PREFIX}player`, JSON.stringify(player));
-    // localStorage.setItem(`${PREFIX}table`, JSON.stringify(table));
 
     this.setState({
       player,
@@ -58,9 +38,7 @@ export default class App extends PureComponent<
     });
   };
 
-  public onLeave = () => {
-    localStorage.clear();
-
+  public onLeave = (): void => {
     this.setState({ player: undefined, table: undefined });
   };
 
@@ -70,14 +48,13 @@ export default class App extends PureComponent<
     return (
       <div className="w-screen h-screen flex overflow-hidden">
         {player && table ? (
-          <Context.Provider
-            value={{
-              table,
-              leave: this.onLeave,
-            }}
-          >
-            <TableComponent dealer={table.dealer} player={player} />
-          </Context.Provider>
+          <TableProvider table={table} player={player}>
+            <TableComponent
+              table={table}
+              dealer={table.dealer}
+              player={player}
+            />
+          </TableProvider>
         ) : (
           <Login onSubmit={this.onJoin} />
         )}
