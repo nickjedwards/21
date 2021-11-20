@@ -75,7 +75,7 @@ export default class App extends PureComponent<
               leave: this.onLeave,
             }}
           >
-            <TableComponent player={player} />
+            <TableComponent dealer={table.dealer} player={player} />
           </Context.Provider>
         ) : (
           <Login onSubmit={this.onJoin} />

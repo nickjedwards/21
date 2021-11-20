@@ -32,8 +32,6 @@ export default class Deck implements IDeck {
         Deck.values.map(value => new Card(suit, value, true)),
       );
     }
-
-    // console.log(this.cards);
   }
 
   public shuffle(): void {
@@ -51,8 +49,6 @@ export default class Deck implements IDeck {
   }
 
   public hit(): ICard {
-    const card = this.cards.pop() || new Card(Suit.Joker, Value.Joker, true);
-
-    return card.flip();
+    return this.cards.pop() || new Card(Suit.Joker, Value.Joker, true);
   }
 }

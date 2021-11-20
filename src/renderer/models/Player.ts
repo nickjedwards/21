@@ -13,4 +13,11 @@ export default class Player implements IPlayer {
 
     this.hands = [new Hand()];
   }
+
+  public join(deck: IDeck) {
+    deck.deal().forEach((card: ICard) => {
+      card.flip();
+      this.hands[0].cards.push(card);
+    });
+  }
 }

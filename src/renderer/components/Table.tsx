@@ -4,6 +4,7 @@ import Card from "./Card/Card";
 import Players from "./Players/Players";
 
 type Props = {
+  dealer: IPlayer;
   player: IPlayer;
 };
 
@@ -19,7 +20,7 @@ export default class Table extends PureComponent<Props, State> {
   render(): JSX.Element {
     const { isPlayerDrawerOpen } = this.state;
 
-    const { player } = this.props;
+    const { dealer, player } = this.props;
 
     return (
       <div className="felt w-screen h-screen flex overflow-hidden">
@@ -48,14 +49,23 @@ export default class Table extends PureComponent<Props, State> {
         <div className="flex flex-col justify-between items-center w-2/4">
           {/* Dealer */}
           <div className="flex flex-col justify-between items-center w-2/4 p-4">
-            <div className="h-40 flex flex-row justify-center mb-6">
-              <Card suit="♣" value={7} />
-              <Card suit="♣" value={7} flipped />
-            </div>
-
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-              Dealer&apos;s hand: 7
-            </span>
+            {dealer.hands.map(hand => (
+              <div className="flex flex-col space-y-6">
+                <div className="h-40 flex flex-row justify-center mb-6">
+                  {hand.cards.map(card => (
+                    <Card
+                      suit={card.suit}
+                      value={card.value}
+                      flipped={card.flipped}
+                      flip={card.flip}
+                    />
+                  ))}
+                </div>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                  {dealer.name}&apos;s hand: {hand.points()}
+                </span>
+              </div>
+            ))}
           </div>
 
           {/* Player */}
@@ -69,6 +79,7 @@ export default class Table extends PureComponent<Props, State> {
                         suit={card.suit}
                         value={card.value}
                         flipped={card.flipped}
+                        flip={card.flip}
                       />
                     ))}
                   </div>
@@ -79,12 +90,13 @@ export default class Table extends PureComponent<Props, State> {
                 </div>
               ))}
             </div>
+
+            {/* Player's Bet */}
             <div className="w-40 h-56 flex justify-center items-end border-4 border-white rounded-lg mb-10">
-              {/* Bet */}
               {/* <div className="chip black" data-value="100" /> */}
             </div>
 
-            {/* Player actions */}
+            {/* Player's actions */}
             <div className="flex justify-center">
               <span className="relative z-0 inline-flex shadow-sm rounded-md">
                 <button

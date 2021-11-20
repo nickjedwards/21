@@ -1,3 +1,4 @@
+import Dealer from "./Dealer";
 import Deck from "./Deck";
 
 export default class Table implements ITable {
@@ -7,6 +8,8 @@ export default class Table implements ITable {
 
   public deck: IDeck;
 
+  public dealer: IPlayer;
+
   public players: IPlayer[] = [];
 
   constructor(id?: number, name?: string) {
@@ -15,10 +18,14 @@ export default class Table implements ITable {
     this.deck = new Deck();
 
     this.deck.shuffle();
+
+    this.dealer = new Dealer(undefined, "Goose");
+
+    this.join(this.dealer);
   }
 
-  public join(player: IPlayer) {
-    player.hands[0].cards = this.deck.deal();
+  public join(player: IPlayer): void {
+    player.join(this.deck);
 
     this.players.push(player);
   }

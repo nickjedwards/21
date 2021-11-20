@@ -6,6 +6,12 @@ export default class Hand implements IHand {
   }
 
   public points(): number {
-    return this.cards.reduce((acc: number, card: ICard) => acc + card.value, 0);
+    return this.cards.reduce((acc: number, card: ICard) => {
+      if (!card.flipped) {
+        return acc + card.value;
+      }
+
+      return acc;
+    }, 0);
   }
 }

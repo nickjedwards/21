@@ -36,9 +36,7 @@ export default class Card implements ICard {
     this.flipped = flipped;
   }
 
-  public flip(): ICard {
+  public flip(): void {
     this.flipped = !this.flipped;
-
-    return this;
   }
 }

@@ -2,7 +2,7 @@ interface ICard {
   suit: string;
   value: number;
   flipped: boolean;
-  flip(): ICard;
+  flip(): void;
 }
 
 interface IDeck {
@@ -21,12 +21,14 @@ interface IPlayer {
   id?: number;
   name?: string;
   hands: IHand[];
+  join(deck: IDeck): void;
 }
 
 interface ITable {
   id?: number;
   name?: string;
   deck: IDeck;
+  dealer: IPlayer;
   players: IPlayer[];
   join(player: IPlayer): void;
 }
