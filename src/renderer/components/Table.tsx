@@ -11,17 +11,6 @@ type State = {
 export default class Table extends PureComponent<Record<string, never>, State> {
   public state = { isPlayerDrawerOpen: false };
 
-  public onHit = () => {
-    const { player, table, onHit } = this.context;
-
-    const card: ICard = table.deck.hit();
-    card.flip();
-
-    player.hands[0].cards.push(card);
-
-    onHit(player);
-  };
-
   static contextType = Context;
 
   declare context: React.ContextType<typeof Context>;
@@ -29,7 +18,7 @@ export default class Table extends PureComponent<Record<string, never>, State> {
   render(): JSX.Element {
     const { isPlayerDrawerOpen } = this.state;
 
-    const { table, player } = this.context;
+    const { table, player, onHit } = this.context;
 
     return (
       <div className="felt w-screen h-screen flex overflow-hidden">
@@ -101,7 +90,7 @@ export default class Table extends PureComponent<Record<string, never>, State> {
                 <button
                   type="button"
                   className="relative inline-flex items-center px-4 py-2 rounded-tl-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
-                  onClick={this.onHit}
+                  onClick={() => onHit(player)}
                 >
                   Hit
                 </button>

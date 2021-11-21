@@ -24,6 +24,13 @@ export default class TableProvider extends Component<Props, State> {
   }
 
   public onHit = (player: IPlayer): void => {
+    const { table } = this.state;
+
+    const card: ICard = table.deck.hit();
+    card.flip();
+
+    player.hands[0].cards.push(card);
+
     this.setState({ player });
   };
 
