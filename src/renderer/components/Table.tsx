@@ -1,36 +1,35 @@
 import React, { PureComponent } from "react";
 import { MenuAlt2Icon } from "@heroicons/react/outline";
+import Context from "../context/table";
 import Card from "./Card/Card";
 import Players from "./Players/Players";
-
-type Props = {
-  table: ITable;
-  dealer: IPlayer;
-  player: IPlayer;
-};
 
 type State = {
   isPlayerDrawerOpen: boolean;
 };
 
-export default class Table extends PureComponent<Props, State> {
-  public state: State = {
-    isPlayerDrawerOpen: false,
+export default class Table extends PureComponent<Record<string, never>, State> {
+  public state = { isPlayerDrawerOpen: false };
+
+  public onHit = () => {
+    const { player, table, onHit } = this.context;
+
+    const card: ICard = table.deck.hit();
+    card.flip();
+
+    player.hands[0].cards.push(card);
+
+    onHit(player);
   };
 
-  public hit = (hand: IHand): void => {
-    const {
-      table: { deck },
-      player,
-    } = this.props;
+  static contextType = Context;
 
-    player.hit(deck, hand);
-  };
+  declare context: React.ContextType<typeof Context>;
 
   render(): JSX.Element {
     const { isPlayerDrawerOpen } = this.state;
 
-    const { dealer, player } = this.props;
+    const { table, player } = this.context;
 
     return (
       <div className="felt w-screen h-screen flex overflow-hidden">
@@ -59,7 +58,7 @@ export default class Table extends PureComponent<Props, State> {
         <div className="flex flex-col justify-between items-center w-2/4">
           {/* Dealer */}
           <div className="flex flex-col justify-between items-center w-2/4 p-4">
-            {dealer.hands.map(hand => (
+            {table.dealer.hands.map(hand => (
               <div className="flex-grow-0 flex-col space-y-6">
                 <div className="h-40 flex flex-row justify-center">
                   {hand.cards.map(card => (
@@ -67,7 +66,7 @@ export default class Table extends PureComponent<Props, State> {
                   ))}
                 </div>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-                  {dealer.name}&apos;s hand: {hand.points()}
+                  {table.dealer.name}&apos;s hand: {hand.points()}
                 </span>
               </div>
             ))}
@@ -102,7 +101,7 @@ export default class Table extends PureComponent<Props, State> {
                 <button
                   type="button"
                   className="relative inline-flex items-center px-4 py-2 rounded-tl-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
-                  onClick={() => this.hit(player.hands[0])}
+                  onClick={this.onHit}
                 >
                   Hit
                 </button>

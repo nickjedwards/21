@@ -16,7 +16,7 @@ export default class Players extends PureComponent<PlayersProps> {
 
   render(): JSX.Element {
     const { open, onClose } = this.props;
-    const { table, leave } = this.context;
+    const { table, onLeave } = this.context;
 
     return (
       <Transition.Root show={open} as={Fragment}>
@@ -70,7 +70,7 @@ export default class Players extends PureComponent<PlayersProps> {
                       <button
                         type="button"
                         className="bg-red-100 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                        onClick={leave}
+                        onClick={onLeave}
                       >
                         Leave table
                       </button>

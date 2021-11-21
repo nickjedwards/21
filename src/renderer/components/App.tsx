@@ -6,37 +6,30 @@ import Notification from "./Notification/Notification";
 import Player from "../models/Player";
 import Table from "../models/Table";
 
-type AppState = {
+type State = {
   player?: IPlayer;
   table?: ITable;
   notifications: string[];
 };
 
-export default class App extends PureComponent<
-  Record<string, never>,
-  AppState
-> {
-  state: AppState = {
+export default class App extends PureComponent<Record<string, never>, State> {
+  state: State = {
     player: undefined,
     table: undefined,
     notifications: [],
   };
 
-  public onJoin = (playerName = "", tableName = "") => {
-    const table: ITable = new Table(1, tableName);
+  public onJoin = (playerName: string, tableName: string) => {
     const player: IPlayer = new Player(1, playerName);
+    const table: ITable = new Table(undefined, tableName);
 
     table.join(player);
 
     this.setState({
       player,
       table,
-      notifications: [`${player.name} has joined the table`],
+      notifications: [`${player.name} joined the table`],
     });
-  };
-
-  public onLeave = (): void => {
-    this.setState({ player: undefined, table: undefined });
   };
 
   public render(): JSX.Element {
@@ -45,12 +38,14 @@ export default class App extends PureComponent<
     return (
       <div className="w-screen h-screen flex overflow-hidden">
         {player && table ? (
-          <TableProvider table={table} player={player}>
-            <TableComponent
-              table={table}
-              dealer={table.dealer}
-              player={player}
-            />
+          <TableProvider
+            player={player}
+            table={table}
+            onLeave={() =>
+              this.setState({ player: undefined, table: undefined })
+            }
+          >
+            <TableComponent />
           </TableProvider>
         ) : (
           <Login onSubmit={this.onJoin} />

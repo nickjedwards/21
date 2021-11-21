@@ -38,6 +38,8 @@ interface ITable {
 }
 
 type TableContext = {
-  table: ITable | undefined;
-  leave(): void;
+  table: ITable;
+  player: IPlayer;
+  onHit(player: IPlayer): void;
+  onLeave(): void;
 };

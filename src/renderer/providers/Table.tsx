@@ -1,39 +1,48 @@
-import React, { PureComponent } from "react";
-import Context from "../context/table";
+import React, { Component } from "react";
+import TableContext from "../context/table";
 
 type Props = {
   children: React.ReactNode;
-  table: ITable;
   player: IPlayer;
+  table: ITable;
+  onLeave(): void;
 };
 
 type State = {
-  player?: IPlayer;
-  table?: ITable;
+  player: IPlayer;
+  table: ITable;
 };
 
-export default class TableProvider extends PureComponent<Props, State> {
+export default class TableProvider extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const { player, table } = this.props;
-
-    this.state = { player, table };
+    this.state = {
+      player: props.player,
+      table: props.table,
+    };
   }
 
+  public onHit = (player: IPlayer): void => {
+    this.setState({ player });
+  };
+
   render(): JSX.Element {
-    const { children } = this.props;
-    const { table } = this.state;
+    const { children, onLeave } = this.props;
+    const { table, player } = this.state;
+    const { onHit } = this;
 
     return (
-      <Context.Provider
+      <TableContext.Provider
         value={{
           table,
-          leave: () => new Error("Oops"),
+          player,
+          onHit,
+          onLeave,
         }}
       >
         {children}
-      </Context.Provider>
+      </TableContext.Provider>
     );
   }
 }

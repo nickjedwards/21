@@ -1,7 +1,7 @@
 import React, { FormEvent, PureComponent } from "react";
 
 type LoginProps = {
-  onSubmit: (name?: string, table?: string) => void;
+  onSubmit(name?: string, table?: string): void;
 };
 
 export default class Login extends PureComponent<LoginProps> {
@@ -29,9 +29,9 @@ export default class Login extends PureComponent<LoginProps> {
       <div className="min-w-full min-h-full flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              21
-            </h2>
+            <h1 className="mt-6 text-center text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-900">
+              Blackjack
+            </h1>
           </div>
           <form onSubmit={this.onSubmit} className="mt-8 space-y-6">
             <div className="rounded-md shadow-sm -space-y-px">
