@@ -28,16 +28,23 @@ export default class Table extends PureComponent<Record<string, never>, State> {
           <div className="flex justify-center">
             <div className="face-down w-28 h-40 bg-red-200 rounded-lg border-4 border-white shadow-md" />
           </div>
+
           {/* Game stats */}
           <div className="bg-black bg-opacity-25 rounded-lg">
             <dl className="text-sm text-gray-100 sm:divide-y sm:divide-black sm:divide-opacity-25">
               <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
-                <dt className=" font-medium">Bet</dt>
-                <dd className="mt-1 sm:mt-0 sm:col-span-2">$100</dd>
+                <dt className="font-medium">Player</dt>
+                <dd className="mt-1 sm:mt-0 sm:col-span-2">{player.name}</dd>
               </div>
               <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
-                <dt className=" font-medium">Balance</dt>
-                <dd className="mt-1 sm:mt-0 sm:col-span-2">$500</dd>
+                <dt className="font-medium">Balance</dt>
+                <dd className="mt-1 sm:mt-0 sm:col-span-2">
+                  ${`${player.purse}`}
+                </dd>
+              </div>
+              <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-5">
+                <dt className="font-medium">Bet</dt>
+                <dd className="mt-1 sm:mt-0 sm:col-span-2">$100</dd>
               </div>
             </dl>
           </div>

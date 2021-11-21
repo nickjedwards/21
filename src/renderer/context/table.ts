@@ -5,10 +5,10 @@ import Table from "../models/Table";
 export default React.createContext<TableContext>({
   table: new Table(),
   player: new Player(),
-  hit() {
+  onHit() {
     throw new Error("Implement hit");
   },
-  leave() {
+  onLeave() {
     throw new Error("Implement leave");
   },
 });

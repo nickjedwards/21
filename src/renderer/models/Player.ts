@@ -5,6 +5,8 @@ export default class Player implements IPlayer {
 
   public name?: string;
 
+  public purse: number;
+
   public hands: IHand[];
 
   public hit = (deck: IDeck, hand: IHand): void => {
@@ -18,7 +20,7 @@ export default class Player implements IPlayer {
   constructor(id?: number, name?: string) {
     this.id = id;
     this.name = name;
-
+    this.purse = 500;
     this.hands = [new Hand()];
   }
 

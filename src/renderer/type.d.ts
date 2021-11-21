@@ -24,6 +24,7 @@ interface IPlayer {
   id?: number;
   name?: string;
   hands: IHand[];
+  purse: number;
   join(deck: IDeck): void;
   hit(deck: IDeck, hand: IHand): void;
 }
