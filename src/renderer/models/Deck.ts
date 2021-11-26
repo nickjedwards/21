@@ -1,4 +1,4 @@
-import Card, { Suit, Value } from "./Card";
+import Card, { Suit } from "./Card";
 
 export default class Deck implements IDeck {
   static readonly suits: Suit[] = [

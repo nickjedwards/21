@@ -8,7 +8,7 @@ export default class Hand implements IHand {
   public points(): number {
     return this.cards.reduce((acc: number, card: ICard) => {
       if (!card.flipped) {
-        return acc + card.value;
+        return acc + card.numberValue;
       }
 
       return acc;

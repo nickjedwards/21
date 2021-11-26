@@ -6,7 +6,7 @@ export enum Suit {
   Joker = "🃏",
 }
 
-const Value = {
+const Value: { [key: string]: number } = {
   Joker: 0,
   "2": 2,
   "3": 3,
@@ -38,8 +38,12 @@ export default class Card implements ICard {
     this.flipped = flipped;
   }
 
+  get numberValue(): number {
+    return Value[this.value];
+  }
+
   get faceValue(): string {
-    return `${this.isAce() ? "A" : String(this.value)} ${this.suit}`;
+    return `${this.value} ${this.suit}`;
   }
 
   public flip(): void {

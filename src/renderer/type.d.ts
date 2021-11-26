@@ -2,6 +2,7 @@ interface ICard {
   suit: string;
   value: string;
   flipped: boolean;
+  numberValue: number;
   faceValue: string;
   flip(): void;
   isRed(): boolean;
