@@ -13,11 +13,26 @@ type State = {
 };
 
 export default class App extends PureComponent<Record<string, never>, State> {
-  state: State = {
-    player: undefined,
-    table: undefined,
-    notifications: [],
-  };
+  // state: State = {
+  //   player: new Player(1, "Nick"),
+  //   table: new Table(undefined, "Test"),
+  //   notifications: [],
+  // };
+
+  public constructor() {
+    super({});
+
+    const player = new Player(1, "Nick");
+    const table = new Table(undefined, "Test");
+
+    table.join(player);
+
+    this.state = {
+      player,
+      table,
+      notifications: [],
+    };
+  }
 
   public onJoin = (playerName: string, tableName: string) => {
     const player: IPlayer = new Player(1, playerName);

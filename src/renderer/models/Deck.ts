@@ -8,20 +8,20 @@ export default class Deck implements IDeck {
     Suit.Spades,
   ];
 
-  static readonly values: Value[] = [
-    Value.Two,
-    Value.Three,
-    Value.Four,
-    Value.Five,
-    Value.Six,
-    Value.Seven,
-    Value.Eight,
-    Value.Nine,
-    Value.Ten,
-    Value.Jack,
-    Value.Queen,
-    Value.King,
-    Value.Ace,
+  static readonly values: string[] = [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "J",
+    "Q",
+    "K",
+    "A",
   ];
 
   public cards: ICard[] = [];
@@ -49,6 +49,6 @@ export default class Deck implements IDeck {
   }
 
   public hit(): ICard {
-    return this.cards.pop() || new Card(Suit.Joker, Value.Joker, true);
+    return this.cards.pop() || new Card(Suit.Joker, "Joker", true);
   }
 }

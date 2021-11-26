@@ -1,6 +1,6 @@
 interface ICard {
   suit: string;
-  value: number;
+  value: string;
   flipped: boolean;
   faceValue: string;
   flip(): void;
