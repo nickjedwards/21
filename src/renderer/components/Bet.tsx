@@ -4,6 +4,7 @@ import Context from "../context/table";
 
 type State = {
   open: boolean;
+  isValid: boolean;
 };
 
 export default class Bet extends PureComponent<Record<string, never>, State> {
@@ -14,7 +15,7 @@ export default class Bet extends PureComponent<Record<string, never>, State> {
     this.cancelButtonRef = createRef();
   }
 
-  public state: State = { open: true };
+  public state: State = { open: true, isValid: false };
 
   static contextType = Context;
 
@@ -25,8 +26,8 @@ export default class Bet extends PureComponent<Record<string, never>, State> {
   public cancelButtonRef: React.RefObject<HTMLButtonElement>;
 
   public render() {
-    const { open } = this.state;
-    const { player, onLeave, onBet } = this.context;
+    const { open, isValid } = this.state;
+    const { player, onBet } = this.context;
 
     return (
       <Transition.Root show={open} as={Fragment}>
@@ -34,7 +35,7 @@ export default class Bet extends PureComponent<Record<string, never>, State> {
           as="div"
           className="fixed z-10 inset-0 overflow-y-auto"
           initialFocus={this.cancelButtonRef}
-          onClose={onLeave}
+          onClose={() => {}}
         >
           <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <Transition.Child
@@ -84,28 +85,40 @@ export default class Bet extends PureComponent<Record<string, never>, State> {
                       </p>
                     </div>
 
-                    <form className="mt-5 sm:flex sm:items-center">
-                      <div className="w-full sm:max-w-xs">
+                    <div className="mt-5 sm:flex sm:items-center">
+                      <div className="relative rounded-md shadow-sm">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <span className="text-gray-500 sm:text-sm">$</span>
+                        </div>
                         <input
                           type="number"
                           name="bet"
                           id="bet"
-                          className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                          placeholder={`$${player.purse / 4}`}
+                          className="focus:ring-green-500 focus:border-green-500 block w-full pl-8 sm:text-sm border-gray-300 rounded-md"
+                          placeholder={String(player.purse / 4)}
+                          min={1}
+                          max={player.purse}
                           ref={this.betRef}
+                          onInput={event => {
+                            this.setState({
+                              isValid: event.currentTarget.validity.valid,
+                            });
+                          }}
                         />
                       </div>
+
                       <button
-                        type="submit"
-                        className="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        type="button"
+                        className="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        disabled={!isValid}
                         onClick={() => {
-                          onBet(Number(this.betRef.current?.value) || 0);
+                          onBet(Number(this.betRef.current?.value));
                           this.setState({ open: false });
                         }}
                       >
                         Place bet
                       </button>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>

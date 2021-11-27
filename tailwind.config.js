@@ -5,7 +5,9 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ["disabled"],
+    },
   },
   // eslint-disable-next-line global-require
   plugins: [require("@tailwindcss/forms")],

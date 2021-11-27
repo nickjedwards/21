@@ -80,6 +80,10 @@ export default class Table extends PureComponent<Record<string, never>, State> {
           ) : (
             <Bet />
           )}
+
+          <div className="absolute bottom-24 flex justify-center z-0">
+            <div className="w-40 h-56 border-4 border-white rounded-lg bottom-24" />
+          </div>
         </div>
 
         {/* Right side of table */}
@@ -98,10 +102,6 @@ export default class Table extends PureComponent<Record<string, never>, State> {
           <span className="sr-only">Open sidebar</span>
           <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
         </button>
-
-        <div className="absolute inset-x-0 bottom-24 flex justify-center z-0">
-          <div className="w-40 h-56 border-4 border-white rounded-lg bottom-24" />
-        </div>
       </div>
     );
   }
