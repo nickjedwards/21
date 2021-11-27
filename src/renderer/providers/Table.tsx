@@ -23,6 +23,15 @@ export default class TableProvider extends Component<Props, State> {
     };
   }
 
+  public onBet = (bet: number): void => {
+    const { player } = this.state;
+
+    player.purse -= bet;
+    player.bet = bet;
+
+    this.setState({ player });
+  };
+
   public onHit = (player: IPlayer): void => {
     const { table } = this.state;
 
@@ -37,13 +46,14 @@ export default class TableProvider extends Component<Props, State> {
   render(): JSX.Element {
     const { children, onLeave } = this.props;
     const { table, player } = this.state;
-    const { onHit } = this;
+    const { onBet, onHit } = this;
 
     return (
       <TableContext.Provider
         value={{
           table,
           player,
+          onBet,
           onHit,
           onLeave,
         }}

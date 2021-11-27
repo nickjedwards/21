@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
 type Props = {
   player: IPlayer;
 };
 
-export default class Players extends PureComponent<Props> {
+export default class Players extends Component<Props> {
   private getInitials = (playerName: string): string =>
     playerName
       .split(" ")

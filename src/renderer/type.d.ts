@@ -26,8 +26,8 @@ interface IPlayer {
   name?: string;
   hands: IHand[];
   purse: number;
+  bet: number;
   join(deck: IDeck): void;
-  hit(deck: IDeck, hand: IHand): void;
 }
 
 interface ITable {
@@ -42,6 +42,7 @@ interface ITable {
 type TableContext = {
   table: ITable;
   player: IPlayer;
+  onBet(bet: number): void;
   onHit(player: IPlayer): void;
   onLeave(): void;
 };

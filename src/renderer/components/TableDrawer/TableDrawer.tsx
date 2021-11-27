@@ -2,14 +2,14 @@ import React, { Fragment, PureComponent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import Context from "../../context/table";
-import Player from "./Player";
+import PlayerListItem from "./PlayerListItem";
 
-type PlayersProps = {
+type Props = {
   open: boolean;
   onClose: () => void;
 };
 
-export default class Players extends PureComponent<PlayersProps> {
+export default class TableDrawer extends PureComponent<Props> {
   static contextType = Context;
 
   public context!: React.ContextType<typeof Context>;
@@ -61,7 +61,7 @@ export default class Players extends PureComponent<PlayersProps> {
                       <ul className="mt-6 relative flex-1 divide-y divide-gray-200 overflow-y-auto">
                         {table?.players.map(player => (
                           <li key={player.id}>
-                            <Player player={player} />
+                            <PlayerListItem player={player} />
                           </li>
                         ))}
                       </ul>

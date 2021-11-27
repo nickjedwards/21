@@ -7,20 +7,15 @@ export default class Player implements IPlayer {
 
   public purse: number;
 
+  public bet: number;
+
   public hands: IHand[];
-
-  public hit = (deck: IDeck, hand: IHand): void => {
-    const card: ICard = deck.hit();
-
-    card.flip();
-
-    hand.cards.push(card);
-  };
 
   constructor(id?: number, name?: string) {
     this.id = id;
     this.name = name;
     this.purse = 500;
+    this.bet = 0;
     this.hands = [new Hand()];
   }
 
